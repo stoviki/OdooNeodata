@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- VIEWS -->           
+        <!-- Survey - Partner -->  
+        <record model="ir.ui.view" id="survey_partner_form">
+            <field name="name">survey.partner.form</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_test_survey']" position="after">
+                    <button name="evaluate_customer" string="Ask Customer" type="object"/>
+                </xpath>
+            </field>
+        </record>  
+        <record model="ir.ui.view" id="survey_partner_kanban">
+            <field name="name">survey.partner.kanban</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//li/a[@name='action_test_survey']" position="after">
+                    <li>
+                        <a name="evaluate_customer" type="object">Ask Customer</a>
+                    </li>
+                </xpath>
+            </field>
+        </record>        
+    </data>
+</openerp>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Add contextual button on partner form view -->
+        <record model="ir.actions.act_window" id="surveys_taken">
+            <field name="name">Survey Answers</field>
+            <field name="res_model">survey.user_input</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="survey.survey_user_input_search"/>           
+        </record>
+        <record model="ir.actions.act_window" id="surveys">
+            <field name="name">Surveys</field>
+            <field name="res_model">survey.survey</field>
+            <field name="view_mode">kanban</field>
+            <field name="domain">[]</field>         
+        </record>
+        <record id="view_partners_form_survey" model="ir.ui.view">
+            <field name="name">view.res.partner.form.survey</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field eval="19" name="priority"/>
+            <field name="arch" type="xml">
+                <data>                   
+                    <xpath expr="//div[@name='buttons']" position="inside"> 
+                        <button class="oe_inline oe_stat_button" type="action"
+                            name="%(surveys)d" 
+                            icon="fa-calendar"
+                            context="{'default_partner_id': active_id}">
+                            <field string="Surveys" name="survey_ids" widget="statinfo"/>
+                        </button>                      
+                        <button class="oe_inline oe_stat_button" type="action"
+                            name="%(surveys_taken)d" 
+                            icon="fa-comments"
+                            context="{'search_default_partner_id': active_id, 'search_default_group_by_survey': True, 'search_default_state': 'done'}">
+                            <field string="Answers" name="survey_input_ids" widget="statinfo"/>
+                        </button>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

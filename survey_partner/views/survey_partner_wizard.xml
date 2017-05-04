@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="survey_partner_wizard_form">
+            <field name="name">Form view for survey partner wizard</field>
+            <field name="model">survey.partner.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Partner Survey">
+                    <group>
+                        <field name="survey_id" readonly="1"/>
+                        <field name="partner_id" required="1"/>                        
+                    </group>
+                    <footer>
+                        <button name="evaluate_customer" type="object" string="Ask Customer" class="oe_highlight"/>                        
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
